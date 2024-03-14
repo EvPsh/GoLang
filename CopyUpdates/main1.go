@@ -23,11 +23,11 @@ func main() {
 
     err := zipFolder(sourceFolder, destinationFile)
     if err != nil {
-        fmt.Println("Ошибка при архивации папки:", err)
+        fmt.Println("Ошибка при архивации папки: ", err)
         return
     }
 
-    fmt.Println("Папка успешно архивирована в", destinationFile)
+    fmt.Println("Папка успешно заархивирована в ", destinationFile)
 }
 
 func zipFolder(sourceFolder, destinationFile string) error {
@@ -68,7 +68,7 @@ func zipFolder(sourceFolder, destinationFile string) error {
         }
         header.Name = archivePath
         header.Method = zip.Deflate
-        header.Flags |= 1 << 11 // Set the UTF-8 flag
+        header.Flags |= 1 << 11 
 
         writer, err := archiveWriter.CreateHeader(header)
         if err != nil {
