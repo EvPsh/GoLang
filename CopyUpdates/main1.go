@@ -1,8 +1,13 @@
 
 package main
-// архивируем папку с обновлениями sourceFolder
-// в d:\\archive.zip
-// используется для архивации баз данных антивируса и второй частью программы переноса и разархивации баз в обновления антивируса
+// 1 часть программы 
+// используется для архивации баз данных антивируса 
+// алгоритм:
+// архивируем папку Updates в archive.zip
+// настраиваем средствами windows копирование в диод в нерабочее время (к примеру суббота вечер)
+// после копирования в диод - удаляем архив
+// на этом работа первой части закончена
+////
 
 import (
     "archive/zip"
@@ -13,8 +18,8 @@ import (
 )
 
 func main() {
-    sourceFolder := '\\wsms\updates'
-    destinationFile := "d:\\archive.zip"
+    sourceFolder := '\\wsms\KLSHARE\Updates' // какую папку архивируем
+    destinationFile := "d:\\archive.zip"    // куда архивируем
 
     err := zipFolder(sourceFolder, destinationFile)
     if err != nil {
