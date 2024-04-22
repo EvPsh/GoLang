@@ -15,19 +15,39 @@ import (
     "io"
     "os"
     "path/filepath"
+    "time"
 )
 
 func main() {
-    sourceFolder := '\\wsms\KLSHARE\Updates' // какую папку архивируем
+    sourceFolder := "\\wsms\\KLSHARE\\Updates" // какую папку архивируем
+    // sourceFolder := "d:\\temp" // какую папку архивируем
     destinationFile := "d:\\archive.zip"    // куда архивируем
+    fileName := "d:\\log.txt"
 
     err := zipFolder(sourceFolder, destinationFile)
     if err != nil {
         fmt.Println("Ошибка при архивации папки: ", err)
         return
     }
+    
+    currentTime := time.Now()
+    fmt.Println(currentTime, " папка успешно заархивирована в ", destinationFile)
 
-    fmt.Println("Папка успешно заархивирована в ", destinationFile)
+    file, err := os.Create(fileName)
+    if err != nil {
+        fmt.Println("Не удалось создать файл:", err)
+        return
+    }
+        
+    defer file.Close()
+
+    _, err = file.WriteString(currentTime.Format("2006-01-02 15:04:05") + " архив создан")
+    if err != nil {
+        fmt.Println("Не удалось записать в файл:", err)
+        return
+    }
+
+    // fmt.Println("Текущая дата и время успешно записаны в файл", fileName)
 }
 
 func zipFolder(sourceFolder, destinationFile string) error {
