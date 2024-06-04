@@ -19,10 +19,10 @@ import (
 )
 
 func main() {
-    sourceFolder := "\\wsms\\KLSHARE\\Updates" // какую папку архивируем
+    sourceFolder := "\\\\wsms\\KLSHARE\\Updates" // какую папку архивируем
     // sourceFolder := "d:\\temp" // какую папку архивируем
-    destinationFile := "d:\\archive.zip"    // куда архивируем
-    fileName := "d:\\log.txt"
+    destinationFile := "e:\\archive.zip"    // куда архивируем
+    fileName := "e:\\log.txt"
 
     err := zipFolder(sourceFolder, destinationFile)
     if err != nil {
